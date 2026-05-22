@@ -6,7 +6,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/Mahananda-123/cloudops-monitoring-platform.git'
+                url: 'https://github.com/Mahananda-123/cloudops-monitoring-platform.git'
             }
         }
 
@@ -20,6 +20,12 @@ pipeline {
         stage('Docker Check') {
             steps {
                 sh 'docker --version'
+            }
+        }
+
+        stage('Docker Compose Check') {
+            steps {
+                sh 'docker compose version || docker-compose --version'
             }
         }
     }
