@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/Mahananda-123/cloudops-monitoring-platform.git'
+            }
+        }
+
+        stage('Show Files') {
+            steps {
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
+
+        stage('Docker Check') {
+            steps {
+                sh 'docker --version'
+            }
+        }
+    }
+}
