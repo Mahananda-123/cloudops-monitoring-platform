@@ -1,0 +1,57 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'mmagadum1234@gmail.com'
+  smtp_auth_username: 'mmagadum1234@gmail.com'
+  smtp_auth_password: '${GMAIL_APP_PASSWORD}'
+
+route:
+  receiver: 'gmail-notifications'
+
+receivers:
+  - name: 'gmail-notifications'
+    email_configs:
+      - to: 'mmagadum1234@gmail.com'
+        from: 'mmagadum1234@gmail.com'
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: 'mmagadum1234@gmail.com'
+        auth_password: '${GMAIL_APP_PASSWORD}'
+        require_tls: true
+ubuntu@ip-172-31-34-164:~/monitoring-project$ cat docker-compose.yml
+version: '3'
+
+services:
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../monitoring/alerts.rules.yml:/etc/prometheus/alerts.rules.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - node-exporter
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--web.external-url=http://13.126.48.152:9093'
+    volumes:
+      - ../monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
+    env_file:
+      - ../.env
+
+    ports:
+      - "9093:9093"
