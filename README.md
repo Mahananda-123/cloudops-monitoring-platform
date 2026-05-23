@@ -2,51 +2,66 @@
 
 ## Project Overview
 
-CloudOps Monitoring and Automation Platform is a cloud-based DevOps monitoring system designed to monitor multiple Linux servers in real time using Prometheus, Grafana, Alertmanager, Docker, and AWS EC2.
+CloudOps Monitoring and Automation Platform is a scalable DevOps infrastructure monitoring solution designed to monitor multiple cloud servers in real time using Prometheus, Grafana, Alertmanager, Docker, Jenkins, and AWS EC2.
 
-The platform provides centralized monitoring, automated alerting, real-time visualization dashboards, and multi-server infrastructure observability.
+The platform enables centralized monitoring, automated alert management, CI/CD pipeline integration, and real-time infrastructure visualization for cloud-based environments.
 
 ---
 
-## Features
+## Objectives
 
-* Multi-server monitoring
-* Real-time infrastructure monitoring
-* CPU, RAM, Disk, and Network monitoring
-* Automated alert notifications
-* Dockerized deployment
-* Centralized monitoring architecture
-* Grafana dashboards
-* Prometheus alert rules
-* Alertmanager email notifications
+* Monitor multiple Linux servers in real time
+* Automate infrastructure monitoring and alerting
+* Visualize system metrics through dashboards
+* Implement CI/CD automation using Jenkins
+* Deploy monitoring services using Docker containers
+* Improve cloud infrastructure reliability and observability
+
+---
+
+## Key Features
+
+* Multi-server centralized monitoring
+* Real-time CPU, RAM, Disk, and Network monitoring
+* Prometheus-based metrics collection
+* Grafana dashboards for visualization
+* Alertmanager email alert notifications
+* Dockerized monitoring stack
+* Jenkins CI/CD pipeline integration
 * AWS EC2 cloud deployment
+* Infrastructure observability and automation
 
 ---
 
 ## Technologies Used
 
 * AWS EC2
-* Docker
+* Docker & Docker Compose
+* Jenkins
 * Prometheus
 * Grafana
 * Alertmanager
 * Node Exporter
 * Linux (Ubuntu)
-* GitHub
+* Git & GitHub
 
 ---
 
-## Project Architecture
+## System Architecture
 
-Target Servers
-↓
-Node Exporter
-↓
-Prometheus
-↓
-Alertmanager
-↓
-Grafana Dashboard
+```text
+Target Linux Servers
+        ↓
+    Node Exporter
+        ↓
+     Prometheus
+        ↓
+   Alertmanager
+        ↓
+ Grafana Dashboard
+        ↓
+      Jenkins
+```
 
 ---
 
@@ -63,10 +78,12 @@ devops-monitoring-platform/
 ├── docker/
 │   └── docker-compose.yml
 │
+├── jenkins/
+│   └── Jenkinsfile
+│
 ├── ansible/
 ├── backend/
 ├── frontend/
-├── jenkins/
 ├── screenshots/
 └── README.md
 ```
@@ -78,37 +95,72 @@ devops-monitoring-platform/
 ### Clone Repository
 
 ```bash
-git clone YOUR_GITHUB_REPO
+git clone https://github.com/Mahananda-123/cloudops-monitoring-platform.git
+cd cloudops-monitoring-platform
 ```
 
-### Start Docker Containers
+---
+
+### Start Monitoring Stack
 
 ```bash
-docker compose up -d
+docker compose -f docker/docker-compose.yml up -d
 ```
 
-### Access Services
+---
+
+## Access Services
 
 Grafana:
-http://SERVER_IP:3000
+http://13.126.36.179:3000
 
 Prometheus:
-http://SERVER_IP:9090
+http://13.126.36.179:9090
 
 Alertmanager:
-http://SERVER_IP:9093
+http://13.126.36.179:9093
+
+Jenkins:
+http://15.207.217.2:8080
+---
+
+## Monitoring Components
+
+### Prometheus
+
+Collects metrics from multiple servers using Node Exporter.
+
+### Grafana
+
+Provides real-time dashboards and visualization for infrastructure metrics.
+
+### Alertmanager
+
+Handles alert routing and sends email notifications during server failures or threshold breaches.
+
+### Jenkins
+
+Automates CI/CD workflows and infrastructure deployment pipelines.
+
+### Node Exporter
+
+Exports Linux system metrics such as CPU, memory, disk, and network usage.
 
 ---
 
 ## Future Enhancements
 
-* Jenkins CI/CD integration
-* Ansible automation
-* React-based dashboard
-* Slack notifications
-* Kubernetes monitoring
+* Kubernetes monitoring integration
+* Slack and Telegram notifications
+* Advanced CI/CD deployment pipelines
 * Docker container monitoring
-* One-click deployment system
+* React-based monitoring dashboard
+* Auto-scaling infrastructure support
+* Ansible-based automated provisioning
+* One-click deployment automation
 
 ---
 
+## Conclusion
+
+CloudOps Monitoring and Automation Platform provides an efficient and scalable solution for cloud infrastructure monitoring and DevOps automation. By integrating Prometheus, Grafana, Alertmanager, Docker, Jenkins, and AWS EC2, the platform enables centralized monitoring, automated alerting, and improved infrastructure reliability for modern cloud environments.

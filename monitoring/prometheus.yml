@@ -8,11 +8,11 @@ alerting:
             - "alertmanager:9093"
 
 rule_files:
-  - "alert.rules.yml"
+  - "alerts.rules.yml"
 
 scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
       - targets:
           - 'node-exporter:9100'
-          - '13.201.8.129:9100'
+          - '13.126.36.179:9100'

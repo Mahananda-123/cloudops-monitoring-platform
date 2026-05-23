@@ -2,7 +2,7 @@ global:
   smtp_smarthost: 'smtp.gmail.com:587'
   smtp_from: 'mmagadum1234@gmail.com'
   smtp_auth_username: 'mmagadum1234@gmail.com'
-  smtp_auth_password: 'jbjz hgjw bgxp edmn'
+  smtp_auth_password: '${GMAIL_APP_PASSWORD}'
 
 route:
   receiver: 'gmail-notifications'
@@ -14,5 +14,5 @@ receivers:
         from: 'mmagadum1234@gmail.com'
         smarthost: 'smtp.gmail.com:587'
         auth_username: 'mmagadum1234@gmail.com'
-        auth_password: 'jbjz hgjw bgxp edmn'
+        auth_password: '${GMAIL_APP_PASSWORD}'
         require_tls: true
