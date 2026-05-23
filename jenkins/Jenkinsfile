@@ -28,5 +28,14 @@ pipeline {
                 sh 'docker --version'
             }
         }
+
+        stage('Deploy Containers') {
+    steps {
+        sh '''
+        cd docker
+        docker compose up -d
+        '''
+    }
+}
     }
 }
