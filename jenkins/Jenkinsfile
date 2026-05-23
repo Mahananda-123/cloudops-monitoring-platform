@@ -29,6 +29,14 @@ pipeline {
             }
         }
 
+        stage('Create Env File') {
+    steps {
+        sh '''
+        echo "GMAIL_APP_PASSWORD=your_app_password" > .env
+        '''
+    }
+}
+
         stage('Deploy Containers') {
     steps {
         sh '''
