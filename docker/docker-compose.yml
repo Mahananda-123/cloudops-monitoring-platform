@@ -1,22 +1,3 @@
-global:
-  smtp_smarthost: 'smtp.gmail.com:587'
-  smtp_from: 'mmagadum1234@gmail.com'
-  smtp_auth_username: 'mmagadum1234@gmail.com'
-  smtp_auth_password: '${GMAIL_APP_PASSWORD}'
-
-route:
-  receiver: 'gmail-notifications'
-
-receivers:
-  - name: 'gmail-notifications'
-    email_configs:
-      - to: 'mmagadum1234@gmail.com'
-        from: 'mmagadum1234@gmail.com'
-        smarthost: 'smtp.gmail.com:587'
-        auth_username: 'mmagadum1234@gmail.com'
-        auth_password: '${GMAIL_APP_PASSWORD}'
-        require_tls: true
-ubuntu@ip-172-31-34-164:~/monitoring-project$ cat docker-compose.yml
 version: '3'
 
 services:
@@ -44,9 +25,11 @@ services:
   alertmanager:
     image: prom/alertmanager
     container_name: alertmanager
+
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--web.external-url=http://13.126.48.152:9093'
+      - '--web.external-url=http://35.154.171.179:9093'
+
     volumes:
       - ../monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml
 
