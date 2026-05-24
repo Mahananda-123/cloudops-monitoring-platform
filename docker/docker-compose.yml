@@ -31,7 +31,6 @@ services:
       - '--web.external-url=http://35.154.171.179:9093'
 
     volumes:
-      volumes:
     - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml
 
     env_file:
